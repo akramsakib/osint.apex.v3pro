@@ -1,0 +1,18 @@
+{
+  "name": "OSINT Apex Intelligence Workbench",
+  "short_name": "OSINT-Apex",
+  "description": "All-in-One OSINT Investigation & Personnel Intelligence Suite - 25 Dashboards, 9,619 Tools, Offline Engines & Dossier Manager",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080a0f",
+  "theme_color": "#00f0ff",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='128' fill='%23080a0f'/%3E%3Ccircle cx='256' cy='256' r='180' fill='none' stroke='%2300f0ff' stroke-width='16' stroke-dasharray='15 10'/%3E%3Ccircle cx='256' cy='256' r='120' fill='none' stroke='%2300ff9d' stroke-width='12'/%3E%3Ccircle cx='256' cy='256' r='60' fill='%2300f0ff' fill-opacity='0.2' stroke='%2300f0ff' stroke-width='8'/%3E%3Cpath d='M256 60 L256 452 M60 256 L452 256' stroke='%2300f0ff' stroke-width='6' stroke-opacity='0.4'/%3E%3Cpolygon points='256,190 280,240 336,244 294,282 306,338 256,308 206,338 218,282 176,244 232,240' fill='%2300ff9d'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
