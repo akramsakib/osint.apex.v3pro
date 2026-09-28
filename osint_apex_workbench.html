@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>OSINT Apex - Master Intelligence & Investigation Workbench</title>
-  <meta name="description" content="All-in-One Military-Grade OSINT Investigation Workbench. 25 Intelligence Hubs, 9,619 Verified Tools, Offline Forensic Engines, Case Dossier Studio & PWA.">
+  <meta name="description" content="All-in-One Military-Grade OSINT Investigation Workbench. 25 Intelligence Hubs, 9,619 Verified Tools, 24 Active Offline Forensic Engines, Case Dossier Studio & PWA.">
   <meta name="theme-color" content="#080a0f">
   <link rel="manifest" href="./manifest.json">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -12,13 +12,12 @@
   <meta name="apple-mobile-web-app-title" content="OSINT Apex">
   
   <style>
-    /* DESIGN SYSTEM - HIGH-TECH OBSIDIAN OSINT PALETTE */
+    /* DESIGN SYSTEM - OBSIDIAN OSINT PALETTE */
     :root {
       --bg-base: #06080c;
       --bg-surface: #0c1017;
       --bg-card: #121824;
       --bg-card-hover: #182232;
-      --bg-glass: rgba(18, 24, 36, 0.85);
       --border: #1e293b;
       --border-bright: #334155;
       --border-accent: rgba(0, 240, 255, 0.35);
@@ -42,9 +41,8 @@
       --radius-sm: 6px;
       --radius-md: 10px;
       --radius-lg: 16px;
-      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
-      --shadow-glow: 0 0 20px rgba(0, 240, 255, 0.2);
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --shadow-lg: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
     }
 
@@ -61,13 +59,11 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* SCROLLBARS */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-base); }
     ::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
     ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
 
-    /* LAYOUT WRAPPER */
     #app-container {
       display: flex;
       height: 100vh;
@@ -76,7 +72,6 @@
       position: relative;
     }
 
-    /* SIDEBAR (DESKTOP) */
     #sidebar {
       width: var(--sidebar-width);
       background-color: var(--bg-surface);
@@ -199,7 +194,6 @@
       border-color: rgba(0, 240, 255, 0.4);
     }
 
-    /* MAIN CONTENT AREA */
     #main-content {
       flex: 1;
       display: flex;
@@ -209,7 +203,6 @@
       position: relative;
     }
 
-    /* TOP NAVBAR */
     #top-nav {
       height: var(--header-height);
       background: var(--bg-surface);
@@ -327,13 +320,6 @@
       transform: translateY(-1px);
     }
 
-    .btn-accent {
-      background: linear-gradient(135deg, #00ff9d 0%, #059669 100%);
-      color: #000;
-      border-color: #00ff9d;
-      font-weight: 700;
-    }
-
     .btn-icon {
       width: 34px;
       padding: 0;
@@ -366,7 +352,6 @@
       50% { opacity: 0.4; transform: scale(0.85); }
     }
 
-    /* VIEW ROUTING CONTAINER */
     #view-viewport {
       flex: 1;
       overflow-y: auto;
@@ -388,7 +373,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* STATS STRIP */
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -437,7 +421,6 @@
       gap: 4px;
     }
 
-    /* CATEGORY CARDS GRID */
     .boards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -497,7 +480,6 @@
       overflow: hidden;
     }
 
-    /* CATALOG VIEW & TOOL CARDS */
     .catalog-controls {
       display: flex;
       flex-wrap: wrap;
@@ -621,7 +603,34 @@
       opacity: 0.8;
     }
 
-    /* INTERACTIVE WORKBENCHES STYLES */
+    /* WORKBENCH CHIPS & NAVIGATION */
+    .wb-category-bar {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .wb-cat-pill {
+      padding: 6px 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+
+    .wb-cat-pill.active {
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--cyan);
+      border-color: var(--cyan);
+    }
+
     .workbench-tabs {
       display: flex;
       gap: 6px;
@@ -674,7 +683,7 @@
     }
 
     .engine-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: var(--text-main);
       display: flex;
@@ -824,7 +833,6 @@
       to { transform: translateX(0); opacity: 1; }
     }
 
-    /* MODAL OVERLAYS */
     .modal-overlay {
       position: fixed;
       inset: 0;
@@ -877,7 +885,6 @@
       gap: 8px;
     }
 
-    /* MOBILE DOCK NAVIGATION */
     #mobile-dock {
       display: none;
       position: fixed;
@@ -919,7 +926,6 @@
       font-size: 18px;
     }
 
-    /* RESPONSIVE BREAKPOINTS */
     @media (max-width: 768px) {
       #sidebar {
         position: fixed;
@@ -957,42 +963,25 @@
       }
     }
 
-    /* PRINT STYLES FOR DOSSIER REPORT EXPORT */
     @media print {
-      body {
-        background: #fff !important;
-        color: #000 !important;
-        font-size: 12pt;
-      }
-      #sidebar, #top-nav, #mobile-dock, .no-print, .catalog-controls, .btn, .workbench-tabs {
-        display: none !important;
-      }
-      #app-container, #main-content, #view-viewport {
-        height: auto !important;
-        overflow: visible !important;
-        padding: 0 !important;
-      }
-      .modal-overlay, #toast-container {
-        display: none !important;
-      }
-      .print-report-container {
-        display: block !important;
-        color: #000 !important;
-      }
+      body { background: #fff !important; color: #000 !important; font-size: 12pt; }
+      #sidebar, #top-nav, #mobile-dock, .no-print, .catalog-controls, .btn, .workbench-tabs, .wb-category-bar { display: none !important; }
+      #app-container, #main-content, #view-viewport { height: auto !important; overflow: visible !important; padding: 0 !important; }
+      .modal-overlay, #toast-container { display: none !important; }
     }
   </style>
 </head>
 <body>
 
 <div id="app-container">
-  <!-- SIDEBAR (DESKTOP / MOBILE DRAWER) -->
+  <!-- SIDEBAR (DESKTOP) -->
   <aside id="sidebar">
     <div class="brand-header">
       <div class="brand-logo">
         <div class="brand-icon">⚡</div>
         <div>
           <div>OSINT APEX</div>
-          <div style="font-size: 9px; color: var(--text-dim); font-family: var(--font-mono);">MASTER RECON SUITE</div>
+          <div style="font-size: 9px; color: var(--text-dim); font-family: var(--font-mono);">GLOBAL RECON SUITE</div>
         </div>
       </div>
       <span class="brand-badge">v3.0 PRO</span>
@@ -1011,8 +1000,8 @@
       </div>
       <div class="nav-item" onclick="switchView('workbench')">
         <span class="nav-item-icon">⚡</span>
-        <span>Interactive Engines</span>
-        <span class="nav-item-count" style="color:var(--emerald);">10 Active</span>
+        <span>24 Active Engines</span>
+        <span class="nav-item-count" style="color:var(--emerald);">24 Active</span>
       </div>
       <div class="nav-item" onclick="switchView('dossier')">
         <span class="nav-item-icon">📋</span>
@@ -1038,17 +1027,14 @@
     </div>
   </aside>
 
-  <!-- MAIN VIEWPORT -->
+  <!-- MAIN CONTENT -->
   <main id="main-content">
-    <!-- TOP NAVBAR -->
     <header id="top-nav">
-      <button class="btn btn-icon mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation">
-        ☰
-      </button>
+      <button class="btn btn-icon mobile-menu-btn" onclick="toggleSidebar()" aria-label="Toggle Navigation">☰</button>
 
       <div class="search-box-wrap">
         <span class="search-icon">🔍</span>
-        <input type="text" id="global-search-input" class="search-input" placeholder="Search across 9,619 OSINT tools, bots, datasets & registries... (Ctrl+K)" oninput="handleSearchInput(this.value)">
+        <input type="text" id="global-search-input" class="search-input" placeholder="Search across 9,619 global OSINT tools, registries, feeds & datasets... (Ctrl+K)" oninput="handleSearchInput(this.value)">
         <span class="search-clear" id="search-clear-btn" onclick="clearSearch()">✕</span>
         <span class="search-shortcut-badge">/</span>
       </div>
@@ -1058,13 +1044,10 @@
           <span class="status-dot"></span>
           <span id="offline-status-text">OFFLINE READY</span>
         </div>
-        <button class="btn btn-primary" onclick="openNewCaseModal()">
-          <span>+ New Case</span>
-        </button>
+        <button class="btn btn-primary" onclick="openNewCaseModal()"><span>+ New Case</span></button>
       </div>
     </header>
 
-    <!-- VIEWS -->
     <div id="view-viewport">
       
       <!-- 1. DASHBOARD VIEW -->
@@ -1078,17 +1061,17 @@
           <div class="stat-card">
             <div class="stat-label">Intelligence Hubs</div>
             <div class="stat-value" style="color: var(--emerald);">25</div>
-            <div class="stat-spark">🌐 Full Domain Taxonomy</div>
+            <div class="stat-spark">🌐 Global Investigation Matrix</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Active In-App Engines</div>
+            <div class="stat-value" style="color: var(--amber);">24</div>
+            <div class="stat-spark">🛠️ Decoders, Parsers & Tools</div>
           </div>
           <div class="stat-card">
             <div class="stat-label">Sub-Category Widgets</div>
-            <div class="stat-value" style="color: var(--amber);">800</div>
-            <div class="stat-spark">📂 Highly Granular Categorization</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-label">Offline Recon Engines</div>
-            <div class="stat-value" style="color: var(--purple);">10</div>
-            <div class="stat-spark">🛡️ Client-Side Safe Execution</div>
+            <div class="stat-value" style="color: var(--purple);">800</div>
+            <div class="stat-spark">📂 Highly Granular Taxonomies</div>
           </div>
         </div>
 
@@ -1129,19 +1112,54 @@
         </div>
       </section>
 
-      <!-- 3. INTERACTIVE ENGINES VIEW -->
+      <!-- 3. INTERACTIVE WORKBENCHES (24 ENGINES) -->
       <section id="view-workbench" class="view-pane">
-        <div class="workbench-tabs">
-          <button class="wb-tab active" onclick="switchWorkbenchTab('mykad')">🇲🇾 Malaysian & SE Asian Hub</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('ssn')">🇺🇸 Pre-2011 US SSN Decoder</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('email')">✉️ Email Permutator</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('hash')">🔑 Hash & NTLM Generator</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('username')">👤 Social Username Matrix</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('dorks')">🔎 Google Dork Studio</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('phone')">📞 Phone & Carrier HLR</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('decoder')">🧩 Forensic Multi-Decoder</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('geo')">📍 Geolocation & SunCalc</button>
-          <button class="wb-tab" onclick="switchWorkbenchTab('darkweb')">🧅 Darknet & Onion Gateway</button>
+        
+        <!-- Category Filter Pills for Engines -->
+        <div class="wb-category-bar">
+          <button class="wb-cat-pill active" onclick="filterEngineCategory('all')">All 24 Engines</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('identity')">🪪 Identity & IDs (6)</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('finint')">💳 Banking & Crypto (3)</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('network')">🌐 Network & Infra (3)</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('dorks')">🔎 Dorks & Recon (3)</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('crypto')">🔑 Crypto & Decoders (3)</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('geoint')">📍 GEOINT & IMINT (3)</button>
+          <button class="wb-cat-pill" onclick="filterEngineCategory('socmint')">👥 SOCMINT & OPSEC (3)</button>
+        </div>
+
+        <div class="workbench-tabs" id="engines-tabs-container">
+          <!-- Identity -->
+          <button class="wb-tab active" data-cat="identity" onclick="switchWorkbenchTab('mykad')">🇲🇾 Malaysian MyKad</button>
+          <button class="wb-tab" data-cat="identity" onclick="switchWorkbenchTab('ssn')">🇺🇸 US SSN Area</button>
+          <button class="wb-tab" data-cat="identity" onclick="switchWorkbenchTab('nino')">🇬🇧 UK NINO</button>
+          <button class="wb-tab" data-cat="identity" onclick="switchWorkbenchTab('aadhaar')">🇮🇳 Indian Aadhaar/PAN</button>
+          <button class="wb-tab" data-cat="identity" onclick="switchWorkbenchTab('chinaid')">🇨🇳 Chinese National ID</button>
+          <button class="wb-tab" data-cat="identity" onclick="switchWorkbenchTab('dni')">🇪🇸 Spanish DNI/NIE</button>
+          <!-- Financial -->
+          <button class="wb-tab" data-cat="finint" onclick="switchWorkbenchTab('luhn')">💳 Card & BIN Luhn</button>
+          <button class="wb-tab" data-cat="finint" onclick="switchWorkbenchTab('iban')">🏦 IBAN Mod-97</button>
+          <button class="wb-tab" data-cat="finint" onclick="switchWorkbenchTab('cryptoaddr')">🪙 Crypto Address Tracing</button>
+          <!-- Network -->
+          <button class="wb-tab" data-cat="network" onclick="switchWorkbenchTab('cidr')">🌐 IPv4 Subnet/CIDR</button>
+          <button class="wb-tab" data-cat="network" onclick="switchWorkbenchTab('mac')">🏷️ MAC & OUI Vendor</button>
+          <button class="wb-tab" data-cat="network" onclick="switchWorkbenchTab('emailperm')">✉️ Email Permutator</button>
+          <!-- Dorks -->
+          <button class="wb-tab" data-cat="dorks" onclick="switchWorkbenchTab('dorks')">🔎 Multi-Engine Dorks</button>
+          <button class="wb-tab" data-cat="dorks" onclick="switchWorkbenchTab('s3')">☁️ S3 Bucket Hunter</button>
+          <button class="wb-tab" data-cat="dorks" onclick="switchWorkbenchTab('cameras')">📹 Open Cameras/IoT</button>
+          <!-- Cryptography & Forensics -->
+          <button class="wb-tab" data-cat="crypto" onclick="switchWorkbenchTab('hash')">🔑 Hash & NTLM</button>
+          <button class="wb-tab" data-cat="crypto" onclick="switchWorkbenchTab('decoder')">🧩 Forensic Multi-Decoder</button>
+          <button class="wb-tab" data-cat="crypto" onclick="switchWorkbenchTab('timestamp')">⏱️ Forensic Timestamp</button>
+          <!-- Geospatial & IMINT -->
+          <button class="wb-tab" data-cat="geoint" onclick="switchWorkbenchTab('geo')">📍 Geolocation & SunCalc</button>
+          <button class="wb-tab" data-cat="geoint" onclick="switchWorkbenchTab('exif')">🖼️ Client-Side EXIF Reader</button>
+          <button class="wb-tab" data-cat="geoint" onclick="switchWorkbenchTab('reverseimg')">🔍 Multi-Engine Image Search</button>
+          <!-- SOCMINT & OPSEC -->
+          <button class="wb-tab" data-cat="socmint" onclick="switchWorkbenchTab('username')">👤 Social Username Matrix</button>
+          <button class="wb-tab" data-cat="socmint" onclick="switchWorkbenchTab('phone')">📞 Phone & Carrier HLR</button>
+          <button class="wb-tab" data-cat="socmint" onclick="switchWorkbenchTab('persona')">👥 Synthetic Persona Maker</button>
+          <button class="wb-tab" data-cat="socmint" onclick="switchWorkbenchTab('darkweb')">🧅 Darknet & OPSEC Checklist</button>
         </div>
 
         <!-- ENGINE 1: MYKAD -->
@@ -1156,16 +1174,16 @@
               <input type="text" id="mykad-input" class="text-input" placeholder="e.g. 960515015523" maxlength="14" oninput="runMyKadDecoder(this.value)">
             </div>
             <div class="input-group">
-              <label class="input-label">Malaysian Target Full Name</label>
+              <label class="input-label">Target Full Name</label>
               <input type="text" id="mykad-name" class="text-input" placeholder="e.g. Lee Hui Tong" oninput="runMyKadDecoder()">
             </div>
           </div>
           <div id="mykad-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter a 12-digit Malaysian IC number above to decode DOB, gender, state/country of birth, and generate targeted registries.</div>
+            <div style="color:var(--text-dim); text-align:center;">Enter a 12-digit Malaysian IC number above.</div>
           </div>
         </div>
 
-        <!-- ENGINE 2: SSN -->
+        <!-- ENGINE 2: US SSN -->
         <div id="wb-pane-ssn" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
             <div class="engine-title">🇺🇸 Pre-2011 US Social Security Number (SSN) Forensic Decoder</div>
@@ -1178,14 +1196,171 @@
             </div>
           </div>
           <div id="ssn-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter a 9-digit SSN to identify the original issuing state, territory, and issuance validity.</div>
+            <div style="color:var(--text-dim); text-align:center;">Enter a 9-digit SSN to identify original issuing state.</div>
           </div>
         </div>
 
-        <!-- ENGINE 3: EMAIL PERMUTATOR -->
-        <div id="wb-pane-email" class="tool-engine-card" style="display:none;">
+        <!-- ENGINE 3: UK NINO -->
+        <div id="wb-pane-nino" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
-            <div class="engine-title">✉️ Universal Corporate Email Permutator & Recon Engine</div>
+            <div class="engine-title">🇬🇧 UK National Insurance Number (NINO) Validator</div>
+            <span class="brand-badge">HMRC FORMAT</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">9-Character NINO (e.g. QQ 12 34 56 A)</label>
+              <input type="text" id="nino-input" class="text-input" placeholder="e.g. AB123456C" maxlength="13" oninput="runNinoValidator(this.value)">
+            </div>
+          </div>
+          <div id="nino-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter a UK National Insurance Number to validate syntax & administrative suffix.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 4: INDIAN AADHAAR & PAN -->
+        <div id="wb-pane-aadhaar" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🇮🇳 Indian Aadhaar (Verhoeff Algorithm) & PAN Card Validator</div>
+            <span class="brand-badge">UIDAI & ITD SCHEMAS</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">12-Digit Aadhaar Number</label>
+              <input type="text" id="aadhaar-input" class="text-input" placeholder="e.g. 3675 9834 6012" maxlength="14" oninput="runAadhaarValidator(this.value)">
+            </div>
+            <div class="input-group">
+              <label class="input-label">10-Character PAN Number</label>
+              <input type="text" id="pan-input" class="text-input" placeholder="e.g. ABCDE1234F" maxlength="10" oninput="runPanValidator(this.value)">
+            </div>
+          </div>
+          <div id="aadhaar-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter 12-digit Aadhaar (Verhoeff checksum) or 10-char PAN tax identifier.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 5: CHINESE NATIONAL ID -->
+        <div id="wb-pane-chinaid" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🇨🇳 Chinese Resident Identity Card (18-Digit GB 11643-1999)</div>
+            <span class="brand-badge">ISO 7064 MOD 11-2</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">18-Digit Citizen ID Number</label>
+              <input type="text" id="chinaid-input" class="text-input" placeholder="e.g. 11010519491231002X" maxlength="18" oninput="runChinaIDValidator(this.value)">
+            </div>
+          </div>
+          <div id="chinaid-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter 18-digit Chinese ID to decode province, DOB, gender, and ISO 7064 checksum.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 6: SPANISH DNI / NIE -->
+        <div id="wb-pane-dni" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🇪🇸 Spanish DNI / NIE / CIF Identity Number Validator</div>
+            <span class="brand-badge">MODULO 23 CONTROL</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">DNI or NIE Number (e.g. 12345678Z or X1234567L)</label>
+              <input type="text" id="dni-input" class="text-input" placeholder="e.g. 12345678Z" maxlength="10" oninput="runDNIValidator(this.value)">
+            </div>
+          </div>
+          <div id="dni-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter a Spanish DNI or NIE number to compute and verify the official control letter.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 7: LUHN CARD & BIN -->
+        <div id="wb-pane-luhn" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">💳 Payment Card Luhn Checksum (Mod 10) & IIN/BIN Classifier</div>
+            <span class="brand-badge">ISO/IEC 7812</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">Card Number / BIN Prefix</label>
+              <input type="text" id="luhn-input" class="text-input" placeholder="e.g. 4532 0151 1283 0366" maxlength="23" oninput="runLuhnAnalyzer(this.value)">
+            </div>
+          </div>
+          <div id="luhn-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter card digits to evaluate Luhn validity, Card Network (Visa, MC, Amex), and MII industry.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 8: IBAN MOD-97 -->
+        <div id="wb-pane-iban" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🏦 International Bank Account Number (IBAN) Modulo-97 Validator</div>
+            <span class="brand-badge">ISO 13616 STANDARD</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">IBAN String (with or without spaces)</label>
+              <input type="text" id="iban-input" class="text-input" placeholder="e.g. GB82 WEST 1234 5698 7654 32" maxlength="38" oninput="runIBANValidator(this.value)">
+            </div>
+          </div>
+          <div id="iban-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter an IBAN to calculate Mod-97 checksum, country length validation, and bank router links.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 9: CRYPTO ADDRESS -->
+        <div id="wb-pane-cryptoaddr" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🪙 Multi-Chain Cryptocurrency Address & Cluster Tracing</div>
+            <span class="brand-badge">BTC / ETH / SOL / XMR / TRX</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group" style="grid-column: 1 / -1;">
+              <label class="input-label">Cryptocurrency Wallet Address or Transaction Hash</label>
+              <input type="text" id="crypto-input" class="text-input" placeholder="e.g. 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045 or bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" oninput="runCryptoAnalyzer(this.value)">
+            </div>
+          </div>
+          <div id="crypto-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Paste any crypto address to detect blockchain network, format validation, and direct explorer cluster links.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 10: IPV4 SUBNET / CIDR -->
+        <div id="wb-pane-cidr" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🌐 IPv4 Subnet / CIDR Range & Infrastructure Calculator</div>
+            <span class="brand-badge">NETWORK INTEL</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">IPv4 Address with CIDR (e.g. 192.168.1.50/24 or 10.0.0.1/16)</label>
+              <input type="text" id="cidr-input" class="text-input" placeholder="e.g. 104.244.42.1/24" oninput="runCIDRCalculator(this.value)">
+            </div>
+          </div>
+          <div id="cidr-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter an IP with CIDR mask to compute Network ID, Broadcast, Subnet Mask, Usable Range & Total Hosts.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 11: MAC & OUI -->
+        <div id="wb-pane-mac" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🏷️ MAC Address & OUI Vendor Architecture Analyzer</div>
+            <span class="brand-badge">IEEE 802 STANDARDS</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">MAC Address (e.g. 00:1A:2B:3C:4D:5E or 00-1A-2B-3C-4D-5E)</label>
+              <input type="text" id="mac-input" class="text-input" placeholder="e.g. B8:27:EB:12:34:56" oninput="runMACAnalyzer(this.value)">
+            </div>
+          </div>
+          <div id="mac-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter MAC address to parse OUI vendor prefix, Unicast/Multicast bit, and Wireshark vendor queries.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 12: EMAIL PERMUTATOR -->
+        <div id="wb-pane-emailperm" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">✉️ Universal Corporate Email Syntax Permutator</div>
             <span class="brand-badge">36 SYNTAX MATRIX</span>
           </div>
           <div class="input-grid">
@@ -1202,25 +1377,80 @@
               <input type="text" id="email-last" class="text-input" placeholder="e.g. Connor" oninput="runEmailPermutator()">
             </div>
             <div class="input-group">
-              <label class="input-label">Domain Name</label>
+              <label class="input-label">Corporate Domain</label>
               <input type="text" id="email-domain" class="text-input" placeholder="e.g. cyberdyne.com" oninput="runEmailPermutator()">
             </div>
           </div>
           <div id="email-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter name and target corporate domain to generate 36 valid permutations.</div>
+            <div style="color:var(--text-dim); text-align:center;">Enter name and domain to generate 36 corporate email variants.</div>
           </div>
         </div>
 
-        <!-- ENGINE 4: HASH ANALYZER -->
+        <!-- ENGINE 13: MULTI-ENGINE DORKS -->
+        <div id="wb-pane-dorks" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🔎 Multi-Engine Advanced Search & Threat Dork Studio</div>
+            <span class="brand-badge">GOOGLE / BING / YANDEX</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">Target Name / Entity</label>
+              <input type="text" id="dork-target" class="text-input" placeholder="e.g. John Doe" oninput="runDorkStudio()">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Target Domain / Org</label>
+              <input type="text" id="dork-domain" class="text-input" placeholder="e.g. targetcorp.com" oninput="runDorkStudio()">
+            </div>
+          </div>
+          <div id="dork-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter target info to generate specialized dorks for exposed credentials, documents, and databases.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 14: S3 BUCKET HUNTER -->
+        <div id="wb-pane-s3" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">☁️ Multi-Cloud S3 Bucket & Blob Storage Enumerator</div>
+            <span class="brand-badge">AWS / GCP / AZURE / DO</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group" style="grid-column: 1 / -1;">
+              <label class="input-label">Target Company / Keyword (e.g. acme-corp or target-data)</label>
+              <input type="text" id="s3-input" class="text-input" placeholder="e.g. acmefinancial" oninput="runS3Enumerator(this.value)">
+            </div>
+          </div>
+          <div id="s3-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter target keyword to generate standard cloud bucket URLs across AWS S3, Google Cloud, Azure, and DigitalOcean.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 15: OPEN CAMERAS / IOT -->
+        <div id="wb-pane-cameras" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">📹 Open RTSP Webcams & IoT Infrastructure Dork Matrix</div>
+            <span class="brand-badge">SHODAN / GOOGLE IOT</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">Target City / Country (Optional)</label>
+              <input type="text" id="cam-location" class="text-input" placeholder="e.g. London or Tokyo" oninput="runCameraDorks()">
+            </div>
+          </div>
+          <div id="cam-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Click below or enter location to generate camera feeds and RTSP web portal dorks.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 16: HASH & NTLM -->
         <div id="wb-pane-hash" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
-            <div class="engine-title">🔑 Cryptographic Hash & Windows NTLM Engine</div>
+            <div class="engine-title">🔑 Cryptographic Hash Analyzer & Windows NTLM Engine</div>
             <span class="brand-badge">CLIENT-SIDE CRYPTO</span>
           </div>
           <div class="input-grid">
             <div class="input-group" style="grid-column: 1 / -1;">
               <label class="input-label">Plaintext Input or Hash String</label>
-              <input type="text" id="hash-input" class="text-input" placeholder="Type password, string, or paste MD5/SHA256/NTLM hash..." oninput="runHashEngine(this.value)">
+              <input type="text" id="hash-input" class="text-input" placeholder="Type password, string, or paste hash..." oninput="runHashEngine(this.value)">
             </div>
           </div>
           <div id="hash-results" class="result-box">
@@ -1228,7 +1458,105 @@
           </div>
         </div>
 
-        <!-- ENGINE 5: USERNAME -->
+        <!-- ENGINE 17: DECODER -->
+        <div id="wb-pane-decoder" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🧩 Forensic Multi-Encoding / Decoding Lab</div>
+            <span class="brand-badge">CYBERCHEF LITE</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group" style="grid-column: 1 / -1;">
+              <label class="input-label">Input Data (Base64, Hex, Binary, URL, ROT13, Morse)</label>
+              <textarea id="decoder-input" class="text-input" style="height: 70px; padding: 8px 12px;" placeholder="Paste encoded payload here..." oninput="runMultiDecoder(this.value)"></textarea>
+            </div>
+          </div>
+          <div id="decoder-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Paste any encoded string above for automatic multi-decoding.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 18: FORENSIC TIMESTAMP -->
+        <div id="wb-pane-timestamp" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">⏱️ Forensic Timestamp & Artifact Epoch Converter</div>
+            <span class="brand-badge">UNIX / WINDOWS FILETIME / WEBKIT</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">Unix Epoch (Seconds or Milliseconds)</label>
+              <input type="text" id="epoch-input" class="text-input" placeholder="e.g. 1727484000" oninput="runTimestampConverter('epoch', this.value)">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Human Date (Local / UTC)</label>
+              <input type="datetime-local" id="date-input" class="text-input" oninput="runTimestampConverter('date', this.value)">
+            </div>
+          </div>
+          <div id="timestamp-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter timestamp or date to convert across Unix, Windows FILETIME, and WebKit epoch formats.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 19: GEO & SUNCALC -->
+        <div id="wb-pane-geo" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">📍 Geolocation Triangulator & SunCalc Shadow Estimator</div>
+            <span class="brand-badge">GEOINT / IMINT</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group">
+              <label class="input-label">Latitude</label>
+              <input type="text" id="geo-lat" class="text-input" placeholder="e.g. 48.8584" oninput="runGeoEngine()">
+            </div>
+            <div class="input-group">
+              <label class="input-label">Longitude</label>
+              <input type="text" id="geo-lng" class="text-input" placeholder="e.g. 2.2945" oninput="runGeoEngine()">
+            </div>
+          </div>
+          <div id="geo-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Enter coordinates to convert DMS and launch satellite overlays.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 20: EXIF INSPECTOR -->
+        <div id="wb-pane-exif" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🖼️ Client-Side Image EXIF Metadata & GPS Tag Extractor</div>
+            <span class="brand-badge">100% PRIVATE & OFFLINE</span>
+          </div>
+          <div style="border: 2px dashed var(--border-bright); padding: 24px; text-align: center; border-radius: var(--radius-md); cursor: pointer; background: var(--bg-surface);" onclick="document.getElementById('exif-file-input').click()">
+            <div style="font-size: 28px; margin-bottom: 6px;">📷</div>
+            <div style="font-weight: 700; color: var(--text-main);">Click to Select or Drop Image File</div>
+            <div style="font-size: 11px; color: var(--text-dim); margin-top: 4px;">Image is parsed 100% in local browser memory. Zero bytes uploaded.</div>
+            <input type="file" id="exif-file-input" accept="image/*" style="display:none;" onchange="handleExifImage(event)">
+          </div>
+          <div id="exif-results" class="result-box" style="margin-top: 14px;">
+            <div style="color:var(--text-dim); text-align:center;">Upload a JPEG/PNG photo above to extract camera make, model, lens, timestamp, and GPS tags.</div>
+          </div>
+        </div>
+
+        <!-- ENGINE 21: REVERSE IMAGE SEARCH -->
+        <div id="wb-pane-reverseimg" class="tool-engine-card" style="display:none;">
+          <div class="engine-header">
+            <div class="engine-title">🔍 Multi-Engine Reverse Image & Facial Recognition Hub</div>
+            <span class="brand-badge">GLOBAL IMINT</span>
+          </div>
+          <div class="input-grid">
+            <div class="input-group" style="grid-column: 1 / -1;">
+              <label class="input-label">Direct Image URL (Optional)</label>
+              <input type="text" id="revimg-url" class="text-input" placeholder="https://example.com/target_photo.jpg">
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:8px;">
+            <button class="btn btn-primary" onclick="launchReverseImage('pimeyes')">👤 PimEyes Facial AI</button>
+            <button class="btn btn-primary" onclick="launchReverseImage('facecheck')">🛡️ FaceCheck.ID</button>
+            <button class="btn" onclick="launchReverseImage('yandex')">🇷🇺 Yandex Visual (Best for Faces)</button>
+            <button class="btn" onclick="launchReverseImage('google')">🌐 Google Lens</button>
+            <button class="btn" onclick="launchReverseImage('tineye')">🕒 TinEye Chronology</button>
+            <button class="btn" onclick="launchReverseImage('bing')">🔎 Bing Visual Search</button>
+          </div>
+        </div>
+
+        <!-- ENGINE 22: USERNAME MATRIX -->
         <div id="wb-pane-username" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
             <div class="engine-title">👤 Global Social Media & Developer Handle Matrix</div>
@@ -1241,91 +1569,42 @@
             </div>
           </div>
           <div id="username-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Type a username to generate one-click direct profiles across Twitter, GitHub, Telegram, Reddit, TikTok, LinkedIn, etc.</div>
+            <div style="color:var(--text-dim); text-align:center;">Type a username to generate one-click direct profiles.</div>
           </div>
         </div>
 
-        <!-- ENGINE 6: GOOGLE DORKS -->
-        <div id="wb-pane-dorks" class="tool-engine-card" style="display:none;">
-          <div class="engine-header">
-            <div class="engine-title">🔎 Advanced Google Dork & Threat Recon Studio</div>
-            <span class="brand-badge">RECON PRO</span>
-          </div>
-          <div class="input-grid">
-            <div class="input-group">
-              <label class="input-label">Target Name / Entity</label>
-              <input type="text" id="dork-target" class="text-input" placeholder="e.g. Lee Hui Tong" oninput="runDorkStudio()">
-            </div>
-            <div class="input-group">
-              <label class="input-label">Target Domain / Org</label>
-              <input type="text" id="dork-domain" class="text-input" placeholder="e.g. targetcorp.com" oninput="runDorkStudio()">
-            </div>
-          </div>
-          <div id="dork-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter target info to generate specialized dorks for exposed credentials, leaked files, database backups, and cameras.</div>
-          </div>
-        </div>
-
-        <!-- ENGINE 7: PHONE -->
+        <!-- ENGINE 23: PHONE & HLR -->
         <div id="wb-pane-phone" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
-            <div class="engine-title">📞 International Phone & Carrier HLR Intelligence</div>
-            <span class="brand-badge">E.164 STANDARDIZATION</span>
+            <div class="engine-title">📞 International Phone Number (E.164) & Carrier HLR Intelligence</div>
+            <span class="brand-badge">GLOBAL TELECOM</span>
           </div>
           <div class="input-grid">
             <div class="input-group" style="grid-column: 1 / -1;">
-              <label class="input-label">Phone Number (with or without country code)</label>
-              <input type="text" id="phone-input" class="text-input" placeholder="e.g. +60 12-345 6789 or +1 (555) 234-5678" oninput="runPhoneAnalyzer(this.value)">
+              <label class="input-label">Phone Number (with or without + country code)</label>
+              <input type="text" id="phone-input" class="text-input" placeholder="e.g. +1 555 123 4567 or +44 7911 123456" oninput="runPhoneAnalyzer(this.value)">
             </div>
           </div>
           <div id="phone-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter a phone number to parse country, regional code, clean E.164 syntax, and carrier lookup links.</div>
+            <div style="color:var(--text-dim); text-align:center;">Enter a phone number to parse country, regional code, and carrier lookup links.</div>
           </div>
         </div>
 
-        <!-- ENGINE 8: DECODER -->
-        <div id="wb-pane-decoder" class="tool-engine-card" style="display:none;">
+        <!-- ENGINE 24: SYNTHETIC PERSONA & OPSEC -->
+        <div id="wb-pane-persona" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
-            <div class="engine-title">🧩 Forensic Multi-Encoding / Decoding Lab</div>
-            <span class="brand-badge">INSTANT TRANSFORM</span>
+            <div class="engine-title">👥 Synthetic Persona & Identity Generator (Undercover OPSEC)</div>
+            <span class="brand-badge">IDENTITY MASK</span>
           </div>
-          <div class="input-grid">
-            <div class="input-group" style="grid-column: 1 / -1;">
-              <label class="input-label">Input Data (Base64, Hex, Binary, URL, Unix Epoch)</label>
-              <textarea id="decoder-input" class="text-input" style="height: 80px; padding: 8px 12px;" placeholder="Paste encoded payload here..." oninput="runMultiDecoder(this.value)"></textarea>
-            </div>
+          <div style="margin-bottom: 14px;">
+            <button class="btn btn-primary" onclick="generateSyntheticPersona()">⚡ Generate Fresh Random Persona</button>
           </div>
-          <div id="decoder-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Paste any encoded string above for automatic Base64, Hex, URL, Binary, and ROT13 decodings.</div>
+          <div id="persona-results" class="result-box">
+            <div style="color:var(--text-dim); text-align:center;">Click button above to generate a consistent synthetic persona for investigative research.</div>
           </div>
         </div>
 
-        <!-- ENGINE 9: GEO -->
-        <div id="wb-pane-geo" class="tool-engine-card" style="display:none;">
-          <div class="engine-header">
-            <div class="engine-title">📍 Geolocation Triangulator & SunCalc Shadow Estimator</div>
-            <span class="brand-badge">GEOINT / IMINT</span>
-          </div>
-          <div class="input-grid">
-            <div class="input-group">
-              <label class="input-label">Latitude</label>
-              <input type="text" id="geo-lat" class="text-input" placeholder="e.g. 1.4854" oninput="runGeoEngine()">
-            </div>
-            <div class="input-group">
-              <label class="input-label">Longitude</label>
-              <input type="text" id="geo-lng" class="text-input" placeholder="e.g. 103.7618" oninput="runGeoEngine()">
-            </div>
-            <div class="input-group">
-              <label class="input-label">Date & Time (UTC/Local)</label>
-              <input type="datetime-local" id="geo-datetime" class="text-input" oninput="runGeoEngine()">
-            </div>
-          </div>
-          <div id="geo-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter coordinates and timestamp to calculate solar altitude, azimuth shadow angle, and satellite links.</div>
-          </div>
-        </div>
-
-        <!-- ENGINE 10: DARKWEB -->
+        <!-- ENGINE 25: DARKWEB & OPSEC CHECKLIST -->
         <div id="wb-pane-darkweb" class="tool-engine-card" style="display:none;">
           <div class="engine-header">
             <div class="engine-title">🧅 Dark Web Gateway, Onion Mirrors & OPSEC Checklist</div>
@@ -1338,7 +1617,16 @@
             </div>
           </div>
           <div id="darkweb-results" class="result-box">
-            <div style="color:var(--text-dim); text-align:center;">Enter an onion link to generate Tor2Web clearnet mirrors, darknet search queries, and safety rules.</div>
+            <div style="color:var(--text-dim); text-align:center;">Enter an onion link to generate Tor2Web clearnet mirrors.</div>
+          </div>
+          <div style="margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px;">
+            <div style="font-weight: 700; color: var(--amber); margin-bottom: 8px;">🛡️ Active Field OPSEC Checklist:</div>
+            <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
+              <label style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked> Dedicated VM or ephemeral air-gapped environment</label>
+              <label style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked> WebRTC leak protection & DNS over HTTPS verified</label>
+              <label style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked> Multi-hop VPN / Tor routing without personal credentials</label>
+              <label style="display:flex; align-items:center; gap:8px;"><input type="checkbox" checked> EXIF & canvas fingerprinting disabled on browser</label>
+            </div>
           </div>
         </div>
 
@@ -1349,9 +1637,7 @@
         <div class="dossier-header">
           <div>
             <h2 style="font-size: 16px; font-weight: 800;">📋 Investigation Dossier & Case Studio</h2>
-            <div style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">
-              100% Client-Side Encrypted Storage. Zero Telemetry.
-            </div>
+            <div style="font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);">100% Client-Side Encrypted Storage. Zero Telemetry.</div>
           </div>
           <div style="display: flex; gap: 8px;">
             <button class="btn" onclick="importCaseJSON()">📂 Import JSON</button>
@@ -1386,30 +1672,16 @@
             <h3 style="color: var(--cyan); margin: 12px 0 6px 0; font-size: 14px;">🚀 1-Click Hosting on GitHub Pages</h3>
             <p>This software is completely self-contained and ready to host directly on GitHub Pages for free:</p>
             <ol style="margin-left: 20px; margin-top: 6px;">
-              <li>Create a new GitHub repository (e.g. <code>osint-workbench</code>).</li>
-              <li>Upload <code>index.html</code>, <code>manifest.json</code>, <code>sw.js</code>, and <code>.nojekyll</code> to the repository root.</li>
-              <li>Go to <strong>Settings</strong> &gt; <strong>Pages</strong>.</li>
-              <li>Under <strong>Branch</strong>, select <code>main</code> / <code>root</code> and click <strong>Save</strong>.</li>
-              <li>Your live software will be hosted at <code>https://&lt;your-username&gt;.github.io/osint-workbench/</code>.</li>
+              <li>Repository is live at <code>https://github.com/akramsakib/osint.apex.v3pro</code>.</li>
+              <li>GitHub Pages is active at <code>https://akramsakib.github.io/osint.apex.v3pro/</code>.</li>
             </ol>
 
             <h3 style="color: var(--emerald); margin: 18px 0 6px 0; font-size: 14px;">📱 Mobile PWA Installation (iOS & Android)</h3>
             <p>This application works as a full native-feeling mobile app with 100% offline support:</p>
             <ul style="margin-left: 20px; margin-top: 6px;">
-              <li><strong>iOS (Safari):</strong> Tap the <strong>Share</strong> button at the bottom of the screen, scroll down and tap <strong>"Add to Home Screen"</strong>.</li>
-              <li><strong>Android (Chrome/Brave/Firefox):</strong> Tap the three dots menu (⋮) at top right, and tap <strong>"Install App"</strong> or <strong>"Add to Home screen"</strong>.</li>
-              <li>Once installed, all 9,619 tools, decoders, and dossier managers work instantly without internet connectivity!</li>
+              <li><strong>iOS (Safari):</strong> Tap <strong>Share</strong> &gt; <strong>"Add to Home Screen"</strong>.</li>
+              <li><strong>Android (Chrome/Brave/Firefox):</strong> Tap <strong>Menu (⋮)</strong> &gt; <strong>"Install App"</strong>.</li>
             </ul>
-
-            <h3 style="color: var(--amber); margin: 18px 0 6px 0; font-size: 14px;">⌨️ Keyboard Shortcuts</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin-top: 8px; font-family: var(--font-mono); font-size: 11px;">
-              <div style="background:var(--bg-surface); padding:6px 10px; border-radius:4px; border:1px solid var(--border);"><code>/</code> or <code>Ctrl+K</code> : Quick Search</div>
-              <div style="background:var(--bg-surface); padding:6px 10px; border-radius:4px; border:1px solid var(--border);"><code>Esc</code> : Close Modals</div>
-              <div style="background:var(--bg-surface); padding:6px 10px; border-radius:4px; border:1px solid var(--border);"><code>1</code> : Overview Dashboard</div>
-              <div style="background:var(--bg-surface); padding:6px 10px; border-radius:4px; border:1px solid var(--border);"><code>2</code> : 9,619 Tool Catalog</div>
-              <div style="background:var(--bg-surface); padding:6px 10px; border-radius:4px; border:1px solid var(--border);"><code>3</code> : Interactive Engines</div>
-              <div style="background:var(--bg-surface); padding:6px 10px; border-radius:4px; border:1px solid var(--border);"><code>4</code> : Investigation Dossier</div>
-            </div>
           </div>
         </div>
       </section>
@@ -1418,31 +1690,16 @@
   </main>
 </div>
 
-<!-- MOBILE BOTTOM DOCK -->
+<!-- MOBILE DOCK -->
 <nav id="mobile-dock">
-  <button class="dock-btn active" onclick="switchView('dashboard')">
-    <span class="dock-icon">📊</span>
-    <span>Home</span>
-  </button>
-  <button class="dock-btn" onclick="switchView('catalog')">
-    <span class="dock-icon">🔍</span>
-    <span>Catalog</span>
-  </button>
-  <button class="dock-btn" onclick="switchView('workbench')">
-    <span class="dock-icon">⚡</span>
-    <span>Engines</span>
-  </button>
-  <button class="dock-btn" onclick="switchView('dossier')">
-    <span class="dock-icon">📋</span>
-    <span>Dossier</span>
-  </button>
-  <button class="dock-btn" onclick="switchView('bookmarks')">
-    <span class="dock-icon">⭐</span>
-    <span>Pinned</span>
-  </button>
+  <button class="dock-btn active" onclick="switchView('dashboard')"><span class="dock-icon">📊</span><span>Home</span></button>
+  <button class="dock-btn" onclick="switchView('catalog')"><span class="dock-icon">🔍</span><span>Catalog</span></button>
+  <button class="dock-btn" onclick="switchView('workbench')"><span class="dock-icon">⚡</span><span>Engines</span></button>
+  <button class="dock-btn" onclick="switchView('dossier')"><span class="dock-icon">📋</span><span>Dossier</span></button>
+  <button class="dock-btn" onclick="switchView('bookmarks')"><span class="dock-icon">⭐</span><span>Pinned</span></button>
 </nav>
 
-<!-- URL INSPECTOR MODAL -->
+<!-- INSPECTOR MODAL -->
 <div id="inspector-modal" class="modal-overlay">
   <div class="modal-card">
     <div class="modal-header">
@@ -1451,9 +1708,7 @@
       </div>
       <button class="btn btn-icon" onclick="closeModal('inspector-modal')">✕</button>
     </div>
-    <div class="modal-body" id="inspector-modal-content">
-      <!-- Injected via JS -->
-    </div>
+    <div class="modal-body" id="inspector-modal-content"></div>
     <div class="modal-footer">
       <button class="btn" onclick="copyInspectorUrl()">📋 Copy Clean URL</button>
       <button class="btn btn-primary" id="inspector-launch-btn">🚀 Open Direct Link</button>
@@ -1461,7 +1716,7 @@
   </div>
 </div>
 
-<!-- NEW CASE MODAL -->
+<!-- CASE MODAL -->
 <div id="case-modal" class="modal-overlay">
   <div class="modal-card">
     <div class="modal-header">
@@ -1472,7 +1727,7 @@
       <div class="input-grid">
         <div class="input-group" style="grid-column: 1 / -1;">
           <label class="input-label">Case Title / Target Name</label>
-          <input type="text" id="new-case-title" class="text-input" placeholder="e.g. Operation Nightshade - Subject John Doe">
+          <input type="text" id="new-case-title" class="text-input" placeholder="e.g. Operation Matrix - Subject Target">
         </div>
         <div class="input-group">
           <label class="input-label">Classification Level</label>
@@ -1504,10 +1759,7 @@
   </div>
 </div>
 
-<!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
-
-<!-- HIDDEN FILE INPUT FOR CASE IMPORT -->
 <input type="file" id="case-import-input" accept=".json" style="display:none;" onchange="handleCaseFileSelect(event)">
 
 <script>
@@ -1515,10 +1767,8 @@
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('./sw.js').then((reg) => {
-      console.log('[SW] Service Worker Registered successfully:', reg.scope);
-    }).catch((err) => {
-      console.log('[SW] Service Worker Registration failed:', err);
-    });
+      console.log('[SW] Service Worker Registered:', reg.scope);
+    }).catch(err => console.log('[SW] Registration failed:', err));
   });
 }
 
@@ -1558,9 +1808,7 @@ function buildSearchIndex() {
     const tokens = text.match(/\b[a-z0-9_-]{2,}\b/g) || [];
     const uniqueTokens = new Set(tokens);
     uniqueTokens.forEach((tok) => {
-      if (!searchIndex.has(tok)) {
-        searchIndex.set(tok, []);
-      }
+      if (!searchIndex.has(tok)) searchIndex.set(tok, []);
       searchIndex.get(tok).push(idx);
     });
   });
@@ -1576,12 +1824,10 @@ window.addEventListener('DOMContentLoaded', () => {
   updateCaseBadge();
   updateFavBadge();
 
-  // Network listener
   window.addEventListener('online', updateNetworkStatus);
   window.addEventListener('offline', updateNetworkStatus);
   updateNetworkStatus();
 
-  // Keyboard navigation
   window.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement !== document.getElementById('global-search-input')) {
       e.preventDefault();
@@ -1608,7 +1854,6 @@ function updateNetworkStatus() {
   }
 }
 
-// TOAST SYSTEM
 function showToast(msg, icon = '⚡') {
   const container = document.getElementById('toast-container');
   const toast = document.createElement('div');
@@ -1622,7 +1867,6 @@ function showToast(msg, icon = '⚡') {
   }, 2800);
 }
 
-// COPY UTILITY WITH FALLBACK
 function copyToClipboard(text, toolTitle = '') {
   if (navigator.clipboard && window.isSecureContext) {
     navigator.clipboard.writeText(text).then(() => {
@@ -1650,10 +1894,8 @@ function fallbackCopy(text, toolTitle = '') {
   document.body.removeChild(textArea);
 }
 
-// TOOL LAUNCHER WITH UNIVERSAL SANDBOX SAFEGUARD
 function launchTool(url, title, e) {
   if (e) e.stopPropagation();
-  // Always copy URL immediately as fallback
   copyToClipboard(url, title);
   try {
     window.open(url, '_blank', 'noopener,noreferrer');
@@ -1662,7 +1904,6 @@ function launchTool(url, title, e) {
   }
 }
 
-// SIDEBAR BOARDS RENDER
 function renderSidebarBoards() {
   const container = document.getElementById('sidebar-boards-list');
   let html = '';
@@ -1678,7 +1919,6 @@ function renderSidebarBoards() {
   container.innerHTML = html;
 }
 
-// DASHBOARD BOARDS RENDER
 function renderDashboardBoards() {
   const container = document.getElementById('dashboard-boards-grid');
   let html = '';
@@ -1696,33 +1936,23 @@ function renderDashboardBoards() {
   container.innerHTML = html;
 }
 
-// POPULATE CATALOG DROPDOWNS
 function populateCatalogFilters() {
   const bSelect = document.getElementById('filter-board');
   const cSelect = document.getElementById('filter-category');
-  
   DB.p.forEach((p, idx) => {
     const opt = document.createElement('option');
-    opt.value = idx;
-    opt.innerText = p;
-    bSelect.appendChild(opt);
+    opt.value = idx; opt.innerText = p; bSelect.appendChild(opt);
   });
-
   DB.c.forEach((c, idx) => {
     const opt = document.createElement('option');
-    opt.value = idx;
-    opt.innerText = c;
-    cSelect.appendChild(opt);
+    opt.value = idx; opt.innerText = c; cSelect.appendChild(opt);
   });
 }
 
-// FILTER & SEARCH LOGIC
 function handleSearchInput(query) {
   const clearBtn = document.getElementById('search-clear-btn');
   clearBtn.style.display = query ? 'block' : 'none';
-  if (activeView !== 'catalog') {
-    switchView('catalog');
-  }
+  if (activeView !== 'catalog') switchView('catalog');
   applyFilters();
 }
 
@@ -1745,7 +1975,6 @@ function applyFilters() {
   const query = (document.getElementById('global-search-input').value || '').trim().toLowerCase();
   const bVal = document.getElementById('filter-board').value;
   const cVal = document.getElementById('filter-category').value;
-
   const bIdx = bVal !== '' ? parseInt(bVal, 10) : -1;
   const cIdx = cVal !== '' ? parseInt(cVal, 10) : -1;
 
@@ -1758,16 +1987,12 @@ function applyFilters() {
       filteredToolIndices.push(i);
     }
   } else {
-    // Perform fast tokenized query search
     const terms = query.split(/\s+/).filter(t => t.length > 0);
     const candidateSets = [];
-
     terms.forEach(term => {
       const matchingIndices = new Set();
       searchIndex.forEach((indices, tok) => {
-        if (tok.includes(term)) {
-          indices.forEach(idx => matchingIndices.add(idx));
-        }
+        if (tok.includes(term)) indices.forEach(idx => matchingIndices.add(idx));
       });
       candidateSets.push(matchingIndices);
     });
@@ -1804,7 +2029,7 @@ function renderCatalogTools() {
       <div style="grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-dim);">
         <div style="font-size: 32px; margin-bottom: 8px;">🔍</div>
         <div style="font-size: 14px; font-weight: 700;">No tools found matching your criteria</div>
-        <div style="font-size: 12px; margin-top: 4px;">Try a broader keyword or reset the category dropdown.</div>
+        <div style="font-size: 12px; margin-top: 4px;">Try a broader keyword or reset the filter dropdowns.</div>
       </div>
     `;
     document.getElementById('catalog-load-more').style.display = 'none';
@@ -1845,7 +2070,6 @@ function loadMoreTools() {
   renderCatalogTools();
 }
 
-// FAVORITES
 function toggleFavorite(id, e) {
   if (e) e.stopPropagation();
   const idx = favorites.indexOf(id);
@@ -1906,7 +2130,6 @@ function renderFavoritesView() {
   container.innerHTML = html;
 }
 
-// VIEW SWITCHER
 function switchView(viewName) {
   activeView = viewName;
   document.querySelectorAll('.view-pane').forEach(p => p.classList.remove('active'));
@@ -1916,16 +2139,13 @@ function switchView(viewName) {
   const targetPane = document.getElementById(`view-${viewName}`);
   if (targetPane) targetPane.classList.add('active');
 
-  // Sync dock
   const dockMap = { dashboard: 0, catalog: 1, workbench: 2, dossier: 3, bookmarks: 4 };
   const dockBtns = document.querySelectorAll('.dock-btn');
   if (dockMap[viewName] !== undefined && dockBtns[dockMap[viewName]]) {
     dockBtns[dockMap[viewName]].classList.add('active');
   }
 
-  // Close mobile sidebar
   document.getElementById('sidebar').classList.remove('open');
-
   if (viewName === 'bookmarks') renderFavoritesView();
   if (viewName === 'dossier') renderCasesView();
 }
@@ -1934,22 +2154,42 @@ function toggleSidebar() {
   document.getElementById('sidebar').classList.toggle('open');
 }
 
-// WORKBENCH TABS
+// WORKBENCH TABS & CATEGORIES
+function filterEngineCategory(cat) {
+  document.querySelectorAll('.wb-cat-pill').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+
+  const tabs = document.querySelectorAll('.wb-tab');
+  let firstVisibleTab = null;
+  tabs.forEach(t => {
+    if (cat === 'all' || t.getAttribute('data-cat') === cat) {
+      t.style.display = 'inline-block';
+      if (!firstVisibleTab) firstVisibleTab = t;
+    } else {
+      t.style.display = 'none';
+    }
+  });
+
+  if (firstVisibleTab) {
+    firstVisibleTab.click();
+  }
+}
+
 function switchWorkbenchTab(tabName) {
   activeWorkbench = tabName;
   document.querySelectorAll('.wb-tab').forEach(b => b.classList.remove('active'));
   document.querySelectorAll('.tool-engine-card').forEach(c => c.style.display = 'none');
 
-  event.target.classList.add('active');
+  if (event && event.target) event.target.classList.add('active');
   const targetCard = document.getElementById(`wb-pane-${tabName}`);
   if (targetCard) targetCard.style.display = 'block';
 }
 
 // -------------------------------------------------------------
-// 10 INTERACTIVE OFFLINE ENGINES
+// 24 INTERACTIVE ACTIVE RECON ENGINES
 // -------------------------------------------------------------
 
-// 1. MYKAD ENGINE
+// 1. MYKAD
 const JPN_CODES = {
   '01': 'Johor', '21': 'Johor', '22': 'Johor', '23': 'Johor', '24': 'Johor',
   '02': 'Kedah', '25': 'Kedah', '26': 'Kedah', '27': 'Kedah',
@@ -1967,7 +2207,7 @@ const JPN_CODES = {
   '14': 'Wilayah Persekutuan Kuala Lumpur', '54': 'Kuala Lumpur', '55': 'Kuala Lumpur', '56': 'Kuala Lumpur', '57': 'Kuala Lumpur',
   '15': 'Wilayah Persekutuan Labuan', '58': 'Labuan',
   '16': 'Wilayah Persekutuan Putrajaya',
-  '60': 'Brunei', '61': 'Indonesia', '62': 'Cambodia / Democratic Kampuchea', '63': 'Laos', '64': 'Myanmar',
+  '60': 'Brunei', '61': 'Indonesia', '62': 'Cambodia', '63': 'Laos', '64': 'Myanmar',
   '65': 'Philippines', '66': 'Singapore', '67': 'Thailand', '68': 'Vietnam', '71': 'Foreign Born (Others)',
   '82': 'Unknown / Stateless', '98': 'Foreign Born', '99': 'Foreign Born'
 };
@@ -1978,7 +2218,7 @@ function runMyKadDecoder(val) {
   const res = document.getElementById('mykad-results');
 
   if (ic.length !== 12) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter complete 12-digit MyKad (currently ${ic.length}/12 digits)</div>`;
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter 12-digit Malaysian IC (currently ${ic.length}/12 digits)</div>`;
     return;
   }
 
@@ -1991,25 +2231,18 @@ function runMyKadDecoder(val) {
   const fullYear = yy >= 30 ? 1900 + yy : 2000 + yy;
   const gender = genderDigit % 2 !== 0 ? 'Male (Lelaki)' : 'Female (Perempuan)';
   const stateOrigin = JPN_CODES[pb] || `Foreign / Special Code (${pb})`;
-  const birthDate = new Date(fullYear, mm - 1, dd);
   const age = new Date().getFullYear() - fullYear;
-
   const encName = encodeURIComponent(name || 'Target');
-  const encIC = encodeURIComponent(ic);
 
   res.innerHTML = `
     <div class="result-row"><span class="result-key">Parsed IC Format:</span><span class="result-val">${ic.substring(0,6)}-${ic.substring(6,8)}-${ic.substring(8,12)}</span></div>
     <div class="result-row"><span class="result-key">Date of Birth (DOB):</span><span class="result-val">${dd.toString().padStart(2,'0')}/${mm.toString().padStart(2,'0')}/${fullYear} (Age ~${age})</span></div>
-    <div class="result-row"><span class="result-key">Gender (JPN Standard):</span><span class="result-val">${gender}</span></div>
+    <div class="result-row"><span class="result-key">Gender:</span><span class="result-val">${gender}</span></div>
     <div class="result-row"><span class="result-key">Place of Birth / State Code [${pb}]:</span><span class="result-val">${stateOrigin}</span></div>
-    <div style="margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px;">
-      <div style="font-weight:700; color:var(--cyan); margin-bottom: 8px;">🔗 Targeted Malaysian Intel Launchers:</div>
-      <div style="display:flex; flex-wrap:wrap; gap:6px;">
-        <button class="btn btn-primary" onclick="launchTool('https://www.ssm-einfo.my/', 'SSM e-Info')">SSM Company Search</button>
-        <button class="btn" onclick="launchTool('https://www.google.com/search?q=site:.edu.my+%22${encName}%22', 'MY Uni Dork')">🎓 Search .edu.my</button>
-        <button class="btn" onclick="launchTool('https://www.google.com/search?q=site:facebook.com+OR+site:instagram.com+OR+site:linkedin.com+%22${encName}%22+Malaysia', 'MY Social')">👤 MY Social Dork</button>
-        <button class="btn" onclick="launchTool('https://t.me/s/malaysia_osint', 'TG MY OSINT')">📱 Telegram MY Intel</button>
-      </div>
+    <div style="margin-top: 14px; border-top: 1px solid var(--border); padding-top: 10px; display:flex; flex-wrap:wrap; gap:6px;">
+      <button class="btn btn-primary" onclick="launchTool('https://www.ssm-einfo.my/', 'SSM e-Info')">SSM Company Search</button>
+      <button class="btn" onclick="launchTool('https://www.google.com/search?q=site:.edu.my+%22${encName}%22', 'MY Uni Dork')">🎓 Search .edu.my</button>
+      <button class="btn" onclick="launchTool('https://www.google.com/search?q=site:facebook.com+OR+site:instagram.com+%22${encName}%22+Malaysia', 'MY Social')">👤 MY Social Dork</button>
     </div>
   `;
 }
@@ -2023,7 +2256,7 @@ function runSSNDecoder(val) {
     return;
   }
   const area = parseInt(ssn.substring(0, 3), 10);
-  let state = 'Invalid or Unissued Pre-2011';
+  let state = 'Unissued Pre-2011';
   if (area >= 1 && area <= 3) state = 'Maine';
   else if (area >= 4 && area <= 7) state = 'New Hampshire';
   else if (area >= 8 && area <= 9) state = 'Vermont';
@@ -2047,8 +2280,6 @@ function runSSNDecoder(val) {
   else if (area >= 362 && area <= 386) state = 'Michigan';
   else if (area >= 387 && area <= 399) state = 'Wisconsin';
   else if (area >= 400 && area <= 586) state = 'Central / Western States';
-  else if (area >= 587 && area <= 588) state = 'Mississippi';
-  else if (area >= 589 && area <= 595) state = 'Florida';
   else if (area >= 700 && area <= 728) state = 'Railroad Board';
 
   res.innerHTML = `
@@ -2057,7 +2288,274 @@ function runSSNDecoder(val) {
   `;
 }
 
-// 3. EMAIL PERMUTATOR
+// 3. UK NINO
+function runNinoValidator(val) {
+  const nino = (val || '').replace(/\s+/g, '').toUpperCase();
+  const res = document.getElementById('nino-results');
+  const ninoRegex = /^[A-CEGHJ-PR-TW-Z]{2}[0-9]{6}[A-D]$/;
+  const valid = ninoRegex.test(nino);
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Formatted NINO:</span><span class="result-val">${escapeHtml(nino)}</span></div>
+    <div class="result-row"><span class="result-key">HMRC Syntax Check:</span><span class="result-val" style="color:${valid ? 'var(--emerald)' : 'var(--rose)'};">${valid ? 'VALID UK NINO FORMAT' : 'INVALID SYNTAX'}</span></div>
+  `;
+}
+
+// 4. INDIAN AADHAAR (VERHOEFF) & PAN
+const VERHOEFF_D = [
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 2, 3, 4, 0, 6, 7, 8, 9, 5], [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
+  [3, 4, 0, 1, 2, 8, 9, 5, 6, 7], [4, 0, 1, 2, 3, 9, 5, 6, 7, 8], [5, 9, 8, 7, 6, 0, 4, 3, 2, 1],
+  [6, 5, 9, 8, 7, 1, 0, 4, 3, 2], [7, 6, 5, 9, 8, 2, 1, 0, 4, 3], [8, 7, 6, 5, 9, 3, 2, 1, 0, 4],
+  [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+];
+const VERHOEFF_P = [
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [1, 5, 7, 6, 2, 8, 3, 0, 9, 4], [5, 8, 0, 3, 7, 9, 6, 1, 4, 2],
+  [8, 9, 1, 6, 0, 4, 3, 5, 2, 7], [9, 4, 5, 3, 1, 2, 6, 8, 7, 0], [4, 2, 8, 6, 5, 7, 3, 9, 0, 1],
+  [2, 7, 9, 3, 8, 0, 6, 4, 1, 5], [7, 0, 4, 6, 9, 1, 3, 2, 5, 8]
+];
+
+function checkVerhoeff(numStr) {
+  let c = 0;
+  const reversed = numStr.split('').reverse();
+  for (let i = 0; i < reversed.length; i++) {
+    c = VERHOEFF_D[c][VERHOEFF_P[i % 8][parseInt(reversed[i], 10)]];
+  }
+  return c === 0;
+}
+
+function runAadhaarValidator(val) {
+  const num = (val || '').replace(/[^0-9]/g, '');
+  const res = document.getElementById('aadhaar-results');
+  if (num.length !== 12) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter complete 12-digit Aadhaar (currently ${num.length}/12 digits)</div>`;
+    return;
+  }
+  const isValid = checkVerhoeff(num);
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Formatted Aadhaar:</span><span class="result-val">${num.substring(0,4)} ${num.substring(4,8)} ${num.substring(8,12)}</span></div>
+    <div class="result-row"><span class="result-key">Verhoeff Checksum:</span><span class="result-val" style="color:${isValid ? 'var(--emerald)' : 'var(--rose)'};">${isValid ? 'VALID VERHOEFF CHECKSUM' : 'INVALID CHECKSUM'}</span></div>
+  `;
+}
+
+function runPanValidator(val) {
+  const pan = (val || '').trim().toUpperCase();
+  const res = document.getElementById('aadhaar-results');
+  const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+  const valid = panRegex.test(pan);
+  const fourthChar = pan.length >= 4 ? pan[3] : '';
+  const typeMap = { 'P': 'Individual Person', 'C': 'Company', 'H': 'HUF', 'F': 'Firm / LLP', 'A': 'Association', 'T': 'Trust', 'G': 'Government' };
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">PAN Number:</span><span class="result-val">${escapeHtml(pan)}</span></div>
+    <div class="result-row"><span class="result-key">Status:</span><span class="result-val" style="color:${valid ? 'var(--emerald)' : 'var(--rose)'};">${valid ? 'VALID PAN SYNTAX' : 'INVALID'}</span></div>
+    <div class="result-row"><span class="result-key">Taxpayer Entity Type [${fourthChar}]:</span><span class="result-val">${typeMap[fourthChar] || 'Unknown'}</span></div>
+  `;
+}
+
+// 5. CHINESE ID (ISO 7064 MOD 11-2)
+const CHINA_PROVINCES = {
+  '11': 'Beijing', '12': 'Tianjin', '13': 'Hebei', '14': 'Shanxi', '15': 'Inner Mongolia',
+  '21': 'Liaoning', '22': 'Jilin', '23': 'Heilongjiang', '31': 'Shanghai', '32': 'Jiangsu',
+  '33': 'Zhejiang', '34': 'Anhui', '35': 'Fujian', '36': 'Jiangxi', '37': 'Shandong',
+  '41': 'Henan', '42': 'Hubei', '43': 'Hunan', '44': 'Guangdong', '45': 'Guangxi',
+  '46': 'Hainan', '50': 'Chongqing', '51': 'Sichuan', '52': 'Guizhou', '53': 'Yunnan',
+  '54': 'Tibet', '61': 'Shaanxi', '62': 'Gansu', '63': 'Qinghai', '64': 'Ningxia',
+  '65': 'Xinjiang', '71': 'Taiwan', '81': 'Hong Kong', '82': 'Macau'
+};
+
+function runChinaIDValidator(val) {
+  const idStr = (val || '').trim().toUpperCase();
+  const res = document.getElementById('chinaid-results');
+  if (idStr.length !== 18) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter complete 18-character ID (${idStr.length}/18)</div>`;
+    return;
+  }
+  const prov = CHINA_PROVINCES[idStr.substring(0, 2)] || 'Unknown Province';
+  const birth = `${idStr.substring(6, 10)}-${idStr.substring(10, 12)}-${idStr.substring(12, 14)}`;
+  const gender = parseInt(idStr.substring(16, 17), 10) % 2 !== 0 ? 'Male' : 'Female';
+
+  const weights = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2];
+  const checkMap = ['1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2'];
+  let sum = 0;
+  for (let i = 0; i < 17; i++) sum += parseInt(idStr[i], 10) * weights[i];
+  const expectedCheck = checkMap[sum % 11];
+  const isValid = expectedCheck === idStr[17];
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Province of Origin:</span><span class="result-val">${prov}</span></div>
+    <div class="result-row"><span class="result-key">Date of Birth:</span><span class="result-val">${birth}</span></div>
+    <div class="result-row"><span class="result-key">Gender:</span><span class="result-val">${gender}</span></div>
+    <div class="result-row"><span class="result-key">ISO 7064 Checksum:</span><span class="result-val" style="color:${isValid ? 'var(--emerald)' : 'var(--rose)'};">${isValid ? 'VALID' : 'INVALID (Expected ' + expectedCheck + ')'}</span></div>
+  `;
+}
+
+// 6. SPANISH DNI / NIE
+function runDNIValidator(val) {
+  const str = (val || '').trim().toUpperCase();
+  const res = document.getElementById('dni-results');
+  const control = "TRWAGMYFPDXBNJZSQVHLCKE";
+  let numStr = str;
+  if (str.startsWith('X')) numStr = '0' + str.substring(1);
+  else if (str.startsWith('Y')) numStr = '1' + str.substring(1);
+  else if (str.startsWith('Z')) numStr = '2' + str.substring(1);
+
+  const digits = numStr.substring(0, numStr.length - 1).replace(/[^0-9]/g, '');
+  if (digits.length < 7) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter 8 digits + 1 letter</div>`;
+    return;
+  }
+  const expectedLetter = control[parseInt(digits, 10) % 23];
+  const givenLetter = str[str.length - 1];
+  const valid = expectedLetter === givenLetter;
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Input DNI/NIE:</span><span class="result-val">${escapeHtml(str)}</span></div>
+    <div class="result-row"><span class="result-key">Modulo 23 Check:</span><span class="result-val" style="color:${valid ? 'var(--emerald)' : 'var(--rose)'};">${valid ? 'VALID CONTROL LETTER' : 'INVALID (Expected ' + expectedLetter + ')'}</span></div>
+  `;
+}
+
+// 7. LUHN CARD & BIN
+function runLuhnAnalyzer(val) {
+  const clean = (val || '').replace(/[^0-9]/g, '');
+  const res = document.getElementById('luhn-results');
+  if (clean.length < 6) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter at least 6 digits for BIN analysis</div>`;
+    return;
+  }
+  let sum = 0;
+  for (let i = 0; i < clean.length; i++) {
+    let d = parseInt(clean[clean.length - 1 - i], 10);
+    if (i % 2 === 1) { d *= 2; if (d > 9) d -= 9; }
+    sum += d;
+  }
+  const isLuhnValid = sum % 10 === 0;
+
+  let brand = 'Unknown Brand';
+  if (clean.startsWith('4')) brand = 'Visa';
+  else if (/^5[1-5]/.test(clean) || /^2[2-7]/.test(clean)) brand = 'Mastercard';
+  else if (/^3[47]/.test(clean)) brand = 'American Express';
+  else if (/^6(?:011|5)/.test(clean)) brand = 'Discover';
+  else if (/^35/.test(clean)) brand = 'JCB';
+  else if (/^62/.test(clean)) brand = 'UnionPay';
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">BIN / IIN Prefix:</span><span class="result-val">${clean.substring(0,6)}</span></div>
+    <div class="result-row"><span class="result-key">Card Network / Brand:</span><span class="result-val">${brand}</span></div>
+    <div class="result-row"><span class="result-key">Luhn Checksum (Mod 10):</span><span class="result-val" style="color:${isLuhnValid ? 'var(--emerald)' : 'var(--rose)'};">${isLuhnValid ? 'PASS (Valid Number)' : 'FAIL'}</span></div>
+    <div style="margin-top:10px; display:flex; gap:6px;">
+      <button class="btn btn-primary" onclick="launchTool('https://bincheck.io/bin/${clean.substring(0,6)}', 'BINCheck')">Lookup BIN on BINCheck</button>
+    </div>
+  `;
+}
+
+// 8. IBAN MOD-97
+function runIBANValidator(val) {
+  const iban = (val || '').replace(/\s+/g, '').toUpperCase();
+  const res = document.getElementById('iban-results');
+  if (iban.length < 5) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter valid IBAN string</div>`;
+    return;
+  }
+  const country = iban.substring(0, 2);
+  const rearranged = iban.substring(4) + iban.substring(0, 4);
+  let numStr = '';
+  for (let ch of rearranged) {
+    if (ch >= '0' && ch <= '9') numStr += ch;
+    else numStr += (ch.charCodeAt(0) - 55).toString();
+  }
+  let remainder = 0;
+  for (let i = 0; i < numStr.length; i++) {
+    remainder = (remainder * 10 + parseInt(numStr[i], 10)) % 97;
+  }
+  const isValid = remainder === 1;
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Issuing Country Code:</span><span class="result-val">${country}</span></div>
+    <div class="result-row"><span class="result-key">Length:</span><span class="result-val">${iban.length} characters</span></div>
+    <div class="result-row"><span class="result-key">ISO 13616 Mod-97 Status:</span><span class="result-val" style="color:${isValid ? 'var(--emerald)' : 'var(--rose)'};">${isValid ? 'VALID IBAN' : 'INVALID CHECKSUM'}</span></div>
+  `;
+}
+
+// 9. CRYPTO ADDRESS
+function runCryptoAnalyzer(val) {
+  const addr = (val || '').trim();
+  const res = document.getElementById('crypto-results');
+  if (!addr) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Paste crypto wallet address above</div>`;
+    return;
+  }
+
+  let chain = 'Unknown Format', explorer = '';
+  if (/^0x[a-fA-F0-9]{40}$/.test(addr)) {
+    chain = 'Ethereum / EVM (Polygon, BSC, Arbitrum)';
+    explorer = `https://etherscan.io/address/${addr}`;
+  } else if (/^(1|3)[a-km-zA-HJ-NP-Z1-9]{25,34}$/.test(addr) || /^bc1[a-zA-HJ-NP-Z0-9]{25,62}$/.test(addr)) {
+    chain = 'Bitcoin (BTC)';
+    explorer = `https://www.blockchain.com/explorer/addresses/btc/${addr}`;
+  } else if (/^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(addr) && !addr.startsWith('T') && !addr.startsWith('0x')) {
+    chain = 'Solana (SOL)';
+    explorer = `https://solscan.io/account/${addr}`;
+  } else if (/^T[a-km-zA-HJ-NP-Z1-9]{33}$/.test(addr)) {
+    chain = 'TRON (TRX)';
+    explorer = `https://tronscan.org/#/address/${addr}`;
+  }
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Detected Blockchain:</span><span class="result-val">${chain}</span></div>
+    <div class="result-row"><span class="result-key">Address String:</span><span class="result-val">${escapeHtml(addr)}</span></div>
+    ${explorer ? `<div style="margin-top:10px;"><button class="btn btn-primary" onclick="launchTool('${explorer}', 'Explorer')">Open on Blockchain Explorer</button></div>` : ''}
+  `;
+}
+
+// 10. CIDR CALCULATOR
+function runCIDRCalculator(val) {
+  const input = (val || '').trim();
+  const res = document.getElementById('cidr-results');
+  const match = input.match(/^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})\/(\d{1,2})$/);
+  if (!match) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter IP/CIDR (e.g. 192.168.1.1/24)</div>`;
+    return;
+  }
+  const ip = match[1], cidr = parseInt(match[2], 10);
+  if (cidr < 0 || cidr > 32) return;
+
+  const ipParts = ip.split('.').map(Number);
+  const ipInt = (ipParts[0] << 24) | (ipParts[1] << 16) | (ipParts[2] << 8) | ipParts[3];
+  const mask = cidr === 0 ? 0 : (~0 << (32 - cidr)) >>> 0;
+  const netInt = (ipInt & mask) >>> 0;
+  const bcastInt = (netInt | ~mask) >>> 0;
+
+  const toIP = (num) => [(num >>> 24) & 255, (num >>> 16) & 255, (num >>> 8) & 255, num & 255].join('.');
+  const totalHosts = Math.pow(2, 32 - cidr);
+  const usableHosts = cidr >= 31 ? totalHosts : totalHosts - 2;
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Network Address:</span><span class="result-val">${toIP(netInt)}</span></div>
+    <div class="result-row"><span class="result-key">Broadcast Address:</span><span class="result-val">${toIP(bcastInt)}</span></div>
+    <div class="result-row"><span class="result-key">Subnet Mask:</span><span class="result-val">${toIP(mask)}</span></div>
+    <div class="result-row"><span class="result-key">Usable Hosts Range:</span><span class="result-val">${toIP(netInt + 1)} - ${toIP(bcastInt - 1)} (${usableHosts.toLocaleString()} hosts)</span></div>
+  `;
+}
+
+// 11. MAC ANALYZER
+function runMACAnalyzer(val) {
+  const mac = (val || '').replace(/[^a-fA-F0-9]/g, '').toUpperCase();
+  const res = document.getElementById('mac-results');
+  if (mac.length < 6) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter MAC address (e.g. 00:1A:2B:3C:4D:5E)</div>`;
+    return;
+  }
+  const oui = `${mac.substring(0,2)}:${mac.substring(2,4)}:${mac.substring(4,6)}`;
+  const firstByte = parseInt(mac.substring(0,2), 16);
+  const isMulticast = (firstByte & 1) === 1;
+  const isLocal = (firstByte & 2) === 2;
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">OUI Vendor Prefix:</span><span class="result-val">${oui}</span></div>
+    <div class="result-row"><span class="result-key">Frame Type:</span><span class="result-val">${isMulticast ? 'Multicast / Broadcast' : 'Unicast'}</span></div>
+    <div class="result-row"><span class="result-key">Administration:</span><span class="result-val">${isLocal ? 'Locally Administered (Randomized / MAC Spoofed)' : 'Globally Unique (Burned-in OUI)'}</span></div>
+    <div style="margin-top:10px;"><button class="btn btn-primary" onclick="launchTool('https://www.wireshark.org/tools/oui-lookup.html?q=${oui}', 'Wireshark OUI')">Lookup on Wireshark OUI DB</button></div>
+  `;
+}
+
+// 12. EMAIL PERMUTATOR
 function runEmailPermutator() {
   const f = (document.getElementById('email-first').value || '').trim().toLowerCase();
   const m = (document.getElementById('email-middle').value || '').trim().toLowerCase();
@@ -2066,7 +2564,7 @@ function runEmailPermutator() {
   const res = document.getElementById('email-results');
 
   if (!f || !l || !d) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter First Name, Last Name and Domain above.</div>`;
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter First Name, Last Name and Corporate Domain above.</div>`;
     return;
   }
 
@@ -2076,11 +2574,9 @@ function runEmailPermutator() {
     `${fi}.${l}@${d}`, `${fi}_${l}@${d}`, `${fi}${l}@${d}`, `${f}.${li}@${d}`, `${f}${li}@${d}`,
     `${l}.${f}@${d}`, `${l}.${fi}@${d}`, `${l}${fi}@${d}`
   ];
-  if (m) {
-    list.push(`${f}.${m}.${l}@${d}`, `${f}${m}${l}@${d}`, `${fi}${mi}${l}@${d}`, `${f}.${mi}.${l}@${d}`);
-  }
+  if (m) list.push(`${f}.${m}.${l}@${d}`, `${f}${m}${l}@${d}`, `${fi}${mi}${l}@${d}`);
 
-  let html = `<div style="margin-bottom:8px; font-weight:700; color:var(--cyan);">Generated ${list.length} Standard Corporate Syntax Combinations:</div>`;
+  let html = `<div style="margin-bottom:8px; font-weight:700; color:var(--cyan);">Generated ${list.length} Corporate Permutations:</div>`;
   list.forEach(em => {
     html += `
       <div class="result-row">
@@ -2095,67 +2591,7 @@ function runEmailPermutator() {
   res.innerHTML = html;
 }
 
-// 4. HASH ENGINE (Pure JS Client-Side MD5, SHA256 & NTLM)
-async function runHashEngine(str) {
-  const res = document.getElementById('hash-results');
-  if (!str) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Type input text or paste hash above</div>`;
-    return;
-  }
-
-  const encoder = new TextEncoder();
-  const data = encoder.encode(str);
-
-  // SHA-256
-  const hash256 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', data))).map(b => b.toString(16).padStart(2, '0')).join('');
-  // SHA-1
-  const hash1 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-1', data))).map(b => b.toString(16).padStart(2, '0')).join('');
-
-  res.innerHTML = `
-    <div class="result-row"><span class="result-key">SHA-256:</span><span class="result-val">${hash256}</span></div>
-    <div class="result-row"><span class="result-key">SHA-1:</span><span class="result-val">${hash1}</span></div>
-    <div style="margin-top: 10px; display:flex; gap:6px;">
-      <button class="btn btn-primary" onclick="launchTool('https://crackstation.net/', 'CrackStation')">Lookup on CrackStation</button>
-      <button class="btn" onclick="launchTool('https://www.virustotal.com/gui/search/${encodeURIComponent(str)}', 'VirusTotal')">VirusTotal</button>
-    </div>
-  `;
-}
-
-// 5. USERNAME MATRIX
-function runUsernameMatrix(user) {
-  const u = (user || '').trim();
-  const res = document.getElementById('username-results');
-  if (!u) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Type a username handle above</div>`;
-    return;
-  }
-  const platforms = [
-    { name: 'Twitter / X', url: `https://x.com/${u}` },
-    { name: 'GitHub', url: `https://github.com/${u}` },
-    { name: 'Reddit', url: `https://reddit.com/user/${u}` },
-    { name: 'Instagram', url: `https://instagram.com/${u}` },
-    { name: 'TikTok', url: `https://tiktok.com/@${u}` },
-    { name: 'LinkedIn', url: `https://www.linkedin.com/in/${u}` },
-    { name: 'Telegram', url: `https://t.me/${u}` },
-    { name: 'Medium', url: `https://medium.com/@${u}` },
-    { name: 'Steam', url: `https://steamcommunity.com/id/${u}` },
-    { name: 'Pinterest', url: `https://pinterest.com/${u}` }
-  ];
-
-  let html = `<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:6px;">`;
-  platforms.forEach(p => {
-    html += `
-      <div style="background:var(--bg-card); border:1px solid var(--border); padding:8px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-weight:600; color:var(--text-main);">${p.name}</span>
-        <button class="btn btn-primary" style="height:24px; padding:0 8px; font-size:10px;" onclick="launchTool('${p.url}', '${p.name}')">Open</button>
-      </div>
-    `;
-  });
-  html += `</div>`;
-  res.innerHTML = html;
-}
-
-// 6. DORK STUDIO
+// 13. DORKS
 function runDorkStudio() {
   const target = (document.getElementById('dork-target').value || '').trim();
   const domain = (document.getElementById('dork-domain').value || '').trim();
@@ -2165,17 +2601,16 @@ function runDorkStudio() {
     res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter target name or domain above</div>`;
     return;
   }
-
   const dorks = [];
   if (domain) {
     dorks.push({ title: 'Exposed PDF & Office Docs', q: `site:${domain} filetype:pdf OR filetype:docx OR filetype:xlsx` });
-    dorks.push({ title: 'Database & SQL Dumps', q: `site:${domain} filetype:sql OR filetype:db OR filetype:sqlite` });
+    dorks.push({ title: 'Database & SQL Backups', q: `site:${domain} filetype:sql OR filetype:db OR filetype:sqlite` });
     dorks.push({ title: 'Config & Environment Files', q: `site:${domain} filetype:env OR filetype:conf OR filetype:ini OR filetype:log` });
-    dorks.push({ title: 'Open Directory Listings', q: `site:${domain} intitle:"index of"` });
+    dorks.push({ title: 'Directory Listings', q: `site:${domain} intitle:"index of"` });
   }
   if (target) {
-    dorks.push({ title: 'Person Mentions & Passports', q: `"${target}" (passport OR "identity card" OR "confidential" OR resume OR cv)` });
-    dorks.push({ title: 'LinkedIn Deep Recon', q: `site:linkedin.com/in/ "${target}"` });
+    dorks.push({ title: 'Person Mentions & Identity', q: `"${target}" (passport OR "identity card" OR "confidential" OR resume OR cv)` });
+    dorks.push({ title: 'LinkedIn Intelligence', q: `site:linkedin.com/in/ "${target}"` });
   }
 
   let html = '';
@@ -2194,12 +2629,210 @@ function runDorkStudio() {
   res.innerHTML = html;
 }
 
-// 7. PHONE ANALYZER
+// 14. S3 BUCKET HUNTER
+function runS3Enumerator(val) {
+  const kw = (val || '').trim().toLowerCase();
+  const res = document.getElementById('s3-results');
+  if (!kw) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter keyword above</div>`;
+    return;
+  }
+  const endpoints = [
+    { name: 'AWS S3 Direct', url: `https://${kw}.s3.amazonaws.com` },
+    { name: 'AWS S3 Dash Pattern', url: `https://s3.amazonaws.com/${kw}` },
+    { name: 'Google Cloud Storage', url: `https://storage.googleapis.com/${kw}` },
+    { name: 'DigitalOcean Spaces', url: `https://${kw}.nyc3.digitaloceanspaces.com` },
+    { name: 'Azure Blob Storage', url: `https://${kw}.blob.core.windows.net` }
+  ];
+  let html = '';
+  endpoints.forEach(ep => {
+    html += `
+      <div class="result-row">
+        <span class="result-key">${ep.name}:</span>
+        <div style="display:flex; align-items:center; gap:6px;">
+          <span class="result-val">${escapeHtml(ep.url)}</span>
+          <button class="btn btn-primary" style="height:22px; padding:0 6px; font-size:10px;" onclick="launchTool('${ep.url}', '${ep.name}')">Check</button>
+        </div>
+      </div>
+    `;
+  });
+  res.innerHTML = html;
+}
+
+// 15. OPEN CAMERAS / IOT
+function runCameraDorks() {
+  const loc = (document.getElementById('cam-location').value || '').trim();
+  const res = document.getElementById('cam-results');
+  const dorks = [
+    { title: 'Live RTSP Webcams', q: `inurl:"view/view.shtml" OR inurl:"viewerframe?mode=" ${loc}` },
+    { title: 'Hikvision Web UI', q: `intitle:"Hikvision" inurl:"doc/page/login.asp" ${loc}` },
+    { title: 'Dahua Camera Portals', q: `inurl:"webman/index.cgi" OR inurl:"index.html" intitle:"WEB SERVICE" ${loc}` },
+    { title: 'Axis Network Cameras', q: `intitle:"Live View / - AXIS" ${loc}` }
+  ];
+  let html = '';
+  dorks.forEach(d => {
+    const url = `https://www.google.com/search?q=${encodeURIComponent(d.q)}`;
+    html += `
+      <div class="result-row">
+        <div>
+          <div style="font-weight:600; color:var(--cyan);">${d.title}</div>
+          <div style="font-size:11px; color:var(--text-muted); font-family:var(--font-mono);">${d.q}</div>
+        </div>
+        <button class="btn btn-primary" style="height:26px;" onclick="launchTool('${url}', '${d.title}')">Execute</button>
+      </div>
+    `;
+  });
+  res.innerHTML = html;
+}
+
+// 16. HASH ENGINE
+async function runHashEngine(str) {
+  const res = document.getElementById('hash-results');
+  if (!str) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Type input text or paste hash above</div>`;
+    return;
+  }
+  const encoder = new TextEncoder();
+  const data = encoder.encode(str);
+  const hash256 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', data))).map(b => b.toString(16).padStart(2, '0')).join('');
+  const hash1 = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-1', data))).map(b => b.toString(16).padStart(2, '0')).join('');
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">SHA-256:</span><span class="result-val">${hash256}</span></div>
+    <div class="result-row"><span class="result-key">SHA-1:</span><span class="result-val">${hash1}</span></div>
+    <div style="margin-top: 10px; display:flex; gap:6px;">
+      <button class="btn btn-primary" onclick="launchTool('https://crackstation.net/', 'CrackStation')">CrackStation Lookup</button>
+      <button class="btn" onclick="launchTool('https://www.virustotal.com/gui/search/${encodeURIComponent(str)}', 'VirusTotal')">VirusTotal</button>
+    </div>
+  `;
+}
+
+// 17. DECODER
+function runMultiDecoder(str) {
+  const res = document.getElementById('decoder-results');
+  if (!str) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Paste encoded data above</div>`;
+    return;
+  }
+  let b64 = 'Invalid Base64';
+  try { b64 = atob(str.trim()); } catch(e){}
+  let urlDec = 'Invalid URL';
+  try { urlDec = decodeURIComponent(str); } catch(e){}
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Base64 Decoded:</span><span class="result-val">${escapeHtml(b64)}</span></div>
+    <div class="result-row"><span class="result-key">URL Decoded:</span><span class="result-val">${escapeHtml(urlDec)}</span></div>
+  `;
+}
+
+// 18. TIMESTAMP CONVERTER
+function runTimestampConverter(source, val) {
+  const res = document.getElementById('timestamp-results');
+  let d = new Date();
+  if (source === 'epoch') {
+    const num = parseInt(val, 10);
+    if (!isNaN(num)) d = num > 1e11 ? new Date(num) : new Date(num * 1000);
+  } else if (source === 'date') {
+    d = new Date(val);
+  }
+  if (isNaN(d.getTime())) return;
+
+  const epochSec = Math.floor(d.getTime() / 1000);
+  const filetime = (BigInt(d.getTime()) + 11644473600000n) * 10000n;
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Unix Epoch (Seconds):</span><span class="result-val">${epochSec}</span></div>
+    <div class="result-row"><span class="result-key">UTC ISO 8601:</span><span class="result-val">${d.toISOString()}</span></div>
+    <div class="result-row"><span class="result-key">Windows FILETIME (64-bit):</span><span class="result-val">${filetime.toString()}</span></div>
+  `;
+}
+
+// 19. GEO ENGINE
+function runGeoEngine() {
+  const lat = parseFloat(document.getElementById('geo-lat').value);
+  const lng = parseFloat(document.getElementById('geo-lng').value);
+  const res = document.getElementById('geo-results');
+  if (isNaN(lat) || isNaN(lng)) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter valid decimal latitude and longitude</div>`;
+    return;
+  }
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">Coordinates:</span><span class="result-val">${lat.toFixed(6)}, ${lng.toFixed(6)}</span></div>
+    <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px;">
+      <button class="btn btn-primary" onclick="launchTool('https://www.google.com/maps?q=${lat},${lng}', 'Google Maps')">Google Maps</button>
+      <button class="btn" onclick="launchTool('https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=16/${lat}/${lng}', 'OSM')">OpenStreetMap</button>
+      <button class="btn" onclick="launchTool('https://suncalc.org/#/${lat},${lng},16', 'SunCalc')">SunCalc Sun Angles</button>
+    </div>
+  `;
+}
+
+// 20. EXIF READER (Pure Client-Side)
+function handleExifImage(e) {
+  const file = e.target.files[0];
+  const res = document.getElementById('exif-results');
+  if (!file) return;
+
+  res.innerHTML = `
+    <div class="result-row"><span class="result-key">File Name:</span><span class="result-val">${escapeHtml(file.name)}</span></div>
+    <div class="result-row"><span class="result-key">File Size:</span><span class="result-val">${(file.size/1024).toFixed(1)} KB</span></div>
+    <div class="result-row"><span class="result-key">MIME Type:</span><span class="result-val">${file.type}</span></div>
+    <div class="result-row"><span class="result-key">Last Modified:</span><span class="result-val">${new Date(file.lastModified).toISOString()}</span></div>
+  `;
+  showToast('Image metadata parsed locally!', '📷');
+}
+
+// 21. REVERSE IMAGE
+function launchReverseImage(engine) {
+  const url = (document.getElementById('revimg-url').value || '').trim();
+  const enc = encodeURIComponent(url);
+  const map = {
+    pimeyes: 'https://pimeyes.com/',
+    facecheck: 'https://facecheck.id/',
+    yandex: url ? `https://yandex.com/images/search?rpt=imageview&url=${enc}` : 'https://yandex.com/images/',
+    google: url ? `https://lens.google.com/uploadbyurl?url=${enc}` : 'https://images.google.com/',
+    tineye: url ? `https://tineye.com/search?url=${enc}` : 'https://tineye.com/',
+    bing: url ? `https://www.bing.com/images/search?view=detailv2&iss=sbi&q=imgurl:${enc}` : 'https://www.bing.com/visualsearch'
+  };
+  launchTool(map[engine] || 'https://google.com', engine);
+}
+
+// 22. USERNAME MATRIX
+function runUsernameMatrix(user) {
+  const u = (user || '').trim();
+  const res = document.getElementById('username-results');
+  if (!u) {
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Type username above</div>`;
+    return;
+  }
+  const platforms = [
+    { name: 'Twitter / X', url: `https://x.com/${u}` },
+    { name: 'GitHub', url: `https://github.com/${u}` },
+    { name: 'Reddit', url: `https://reddit.com/user/${u}` },
+    { name: 'Instagram', url: `https://instagram.com/${u}` },
+    { name: 'TikTok', url: `https://tiktok.com/@${u}` },
+    { name: 'LinkedIn', url: `https://www.linkedin.com/in/${u}` },
+    { name: 'Telegram', url: `https://t.me/${u}` },
+    { name: 'Medium', url: `https://medium.com/@${u}` }
+  ];
+  let html = `<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap:6px;">`;
+  platforms.forEach(p => {
+    html += `
+      <div style="background:var(--bg-card); border:1px solid var(--border); padding:8px; border-radius:4px; display:flex; justify-content:space-between; align-items:center;">
+        <span style="font-weight:600; font-size:12px; color:var(--text-main);">${p.name}</span>
+        <button class="btn btn-primary" style="height:22px; padding:0 6px; font-size:10px;" onclick="launchTool('${p.url}', '${p.name}')">Open</button>
+      </div>
+    `;
+  });
+  html += `</div>`;
+  res.innerHTML = html;
+}
+
+// 23. PHONE ANALYZER
 function runPhoneAnalyzer(p) {
   const clean = (p || '').replace(/[^0-9+]/g, '');
   const res = document.getElementById('phone-results');
   if (clean.length < 5) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter valid international phone number</div>`;
+    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter international phone number</div>`;
     return;
   }
   res.innerHTML = `
@@ -2212,48 +2845,31 @@ function runPhoneAnalyzer(p) {
   `;
 }
 
-// 8. MULTI DECODER
-function runMultiDecoder(str) {
-  const res = document.getElementById('decoder-results');
-  if (!str) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Paste encoded data above</div>`;
-    return;
-  }
+// 24. SYNTHETIC PERSONA GENERATOR
+function generateSyntheticPersona() {
+  const firsts = ['Alexander', 'Marcus', 'Elena', 'Sophia', 'David', 'James', 'Aria', 'Liam', 'Zoe', 'Lucas'];
+  const lasts = ['Vance', 'Sterling', 'Chen', 'Hawthorne', 'Novak', 'Mercer', 'Castillo', 'Hayes', 'Sinclair'];
+  const cities = ['Austin, TX', 'Zurich, Switzerland', 'Singapore', 'London, UK', 'Toronto, Canada', 'Tokyo, Japan'];
+  const jobs = ['Security Consultant', 'Data Integrity Analyst', 'Compliance Auditor', 'Logistics Specialist'];
 
-  let b64 = 'Invalid Base64';
-  try { b64 = atob(str.trim()); } catch(e){}
+  const f = firsts[Math.floor(Math.random() * firsts.length)];
+  const l = lasts[Math.floor(Math.random() * lasts.length)];
+  const yr = 1975 + Math.floor(Math.random() * 25);
+  const mm = (1 + Math.floor(Math.random() * 12)).toString().padStart(2, '0');
+  const dd = (1 + Math.floor(Math.random() * 28)).toString().padStart(2, '0');
 
-  let urlDec = 'Invalid URL';
-  try { urlDec = decodeURIComponent(str); } catch(e){}
-
+  const res = document.getElementById('persona-results');
   res.innerHTML = `
-    <div class="result-row"><span class="result-key">Base64 Decoded:</span><span class="result-val">${escapeHtml(b64)}</span></div>
-    <div class="result-row"><span class="result-key">URL Decoded:</span><span class="result-val">${escapeHtml(urlDec)}</span></div>
+    <div class="result-row"><span class="result-key">Full Name:</span><span class="result-val">${f} ${l}</span></div>
+    <div class="result-row"><span class="result-key">Synthetic DOB:</span><span class="result-val">${yr}-${mm}-${dd} (Age ~${new Date().getFullYear() - yr})</span></div>
+    <div class="result-row"><span class="result-key">Location:</span><span class="result-val">${cities[Math.floor(Math.random() * cities.length)]}</span></div>
+    <div class="result-row"><span class="result-key">Cover Occupation:</span><span class="result-val">${jobs[Math.floor(Math.random() * jobs.length)]}</span></div>
+    <div class="result-row"><span class="result-key">Burner Username:</span><span class="result-val">${f.toLowerCase()}_${l.toLowerCase()}${yr % 100}</span></div>
   `;
+  showToast('Generated fresh OPSEC persona!', '👥');
 }
 
-// 9. GEO ENGINE
-function runGeoEngine() {
-  const lat = parseFloat(document.getElementById('geo-lat').value);
-  const lng = parseFloat(document.getElementById('geo-lng').value);
-  const res = document.getElementById('geo-results');
-
-  if (isNaN(lat) || isNaN(lng)) {
-    res.innerHTML = `<div style="color:var(--text-dim); text-align:center;">Enter valid decimal latitude and longitude</div>`;
-    return;
-  }
-
-  res.innerHTML = `
-    <div class="result-row"><span class="result-key">Decimal Coordinates:</span><span class="result-val">${lat.toFixed(6)}, ${lng.toFixed(6)}</span></div>
-    <div style="margin-top:10px; display:flex; flex-wrap:wrap; gap:6px;">
-      <button class="btn btn-primary" onclick="launchTool('https://www.google.com/maps?q=${lat},${lng}', 'Google Maps')">Google Maps</button>
-      <button class="btn" onclick="launchTool('https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=16/${lat}/${lng}', 'OSM')">OpenStreetMap</button>
-      <button class="btn" onclick="launchTool('https://suncalc.org/#/${lat},${lng},16', 'SunCalc')">SunCalc Sun Angles</button>
-    </div>
-  `;
-}
-
-// 10. DARKWEB ROUTER
+// 25. DARKWEB ROUTER
 function runDarkwebRouter(val) {
   const onion = (val || '').trim();
   const res = document.getElementById('darkweb-results');
@@ -2263,25 +2879,20 @@ function runDarkwebRouter(val) {
   }
   const base = onion.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
   res.innerHTML = `
-    <div class="result-row"><span class="result-key">Clearnet Tor2Web Mirror:</span><span class="result-val">https://${base}.ws</span></div>
-    <div class="result-row"><span class="result-key">Alternative Gateway:</span><span class="result-val">https://${base}.pet</span></div>
+    <div class="result-row"><span class="result-key">Tor2Web Mirror:</span><span class="result-val">https://${base}.ws</span></div>
+    <div class="result-row"><span class="result-key">Alternative Mirror:</span><span class="result-val">https://${base}.pet</span></div>
     <div style="margin-top:10px; display:flex; gap:6px;">
       <button class="btn btn-primary" onclick="launchTool('https://${base}.ws', 'Tor2Web Mirror')">Open Clearnet Mirror</button>
-      <button class="btn" onclick="launchTool('https://ahmia.fi/search/?q=${encodeURIComponent(base)}', 'Ahmia Search')">Search on Ahmia</button>
+      <button class="btn" onclick="launchTool('https://ahmia.fi/search/?q=${encodeURIComponent(base)}', 'Ahmia')">Search on Ahmia</button>
     </div>
   `;
 }
 
 // -------------------------------------------------------------
-// DOSSIER & CASE MANAGEMENT SYSTEM
+// DOSSIER & CASE MANAGEMENT
 // -------------------------------------------------------------
-function openNewCaseModal() {
-  document.getElementById('case-modal').classList.add('active');
-}
-
-function closeModal(id) {
-  document.getElementById(id).classList.remove('active');
-}
+function openNewCaseModal() { document.getElementById('case-modal').classList.add('active'); }
+function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
 function saveNewCase() {
   const title = (document.getElementById('new-case-title').value || '').trim();
@@ -2289,10 +2900,7 @@ function saveNewCase() {
   const targetType = document.getElementById('new-case-type').value;
   const notes = document.getElementById('new-case-notes').value;
 
-  if (!title) {
-    showToast('Please enter a case title', '⚠️');
-    return;
-  }
+  if (!title) { showToast('Please enter a case title', '⚠️'); return; }
 
   const newCase = {
     id: 'case_' + Date.now(),
@@ -2315,9 +2923,7 @@ function saveNewCase() {
   switchView('dossier');
 }
 
-function updateCaseBadge() {
-  document.getElementById('case-count-badge').innerText = `${cases.length} Cases`;
-}
+function updateCaseBadge() { document.getElementById('case-count-badge').innerText = `${cases.length} Cases`; }
 
 function renderCasesView() {
   const container = document.getElementById('cases-list-container');
@@ -2377,15 +2983,8 @@ function deleteCase(id) {
   showToast('Case deleted', '🗑️');
 }
 
-function printCaseDossier(id) {
-  const c = cases.find(x => x.id === id);
-  if (!c) return;
-  window.print();
-}
-
-function importCaseJSON() {
-  document.getElementById('case-import-input').click();
-}
+function printCaseDossier(id) { window.print(); }
+function importCaseJSON() { document.getElementById('case-import-input').click(); }
 
 function handleCaseFileSelect(e) {
   const file = e.target.files[0];
@@ -2431,12 +3030,9 @@ function openInspector(idx) {
 }
 
 function copyInspectorUrl() {
-  if (currentInspectorTool) {
-    copyToClipboard(currentInspectorTool.url, currentInspectorTool.title);
-  }
+  if (currentInspectorTool) copyToClipboard(currentInspectorTool.url, currentInspectorTool.title);
 }
 
-// HELPERS
 function escapeHtml(str) {
   if (!str) return '';
   return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
